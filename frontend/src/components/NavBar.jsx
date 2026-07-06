@@ -1,5 +1,6 @@
 import React from 'react'
 import blogLogo from '../assets/blogLogo.png'
+import defaultPFP from '../assets/defaultPFP.png'
 
 const NavBar = () => {
     return (
@@ -16,6 +17,7 @@ const NavBar = () => {
                 <li className='list-none font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>DESIGN</li>
                 <li className='list-none font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>FOOD</li>
                 <button id="profile-btn" className='h-[47%] w-[7.5%] rounded-full bg-slate-100 border-2 border-slate-200'>
+                    <img src={defaultPFP} alt="PFP" className='rounded-full'/>
                 </button>
             </div>
         </div>
