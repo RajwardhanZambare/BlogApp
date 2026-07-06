@@ -35,3 +35,7 @@
 #read-more-btn:hover::before {
     right: 0;
 }
+
+#read-more-btn:active{
+    transform: scale(0.95);
+}

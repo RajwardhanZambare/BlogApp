@@ -7,13 +7,13 @@ const Home = () => {
     const [blogs, setBlogs] = useState([1,2,3,4,5])
 
     return (
-        <div id='app' className='h-screen w-full flex  justify-center'>
-            <div className='h-screen w-[70%] flex flex-col items-center'>
+        <div id='app' className='min-h-screen w-full flex justify-center bg-[#FAF9F6]'>
+            <div className='w-[70%] flex flex-col items-center'>
                 <NavBar />
                 <div id="blogs-div" className='w-full pt-[12vh] pb-[1vh]'>
                     {blogs.map((blog, index) => {
                         return(
-                            <Blog index={index}/>
+                            <Blog key={index} index={index}/>
                         )
                     })}
                 </div>
