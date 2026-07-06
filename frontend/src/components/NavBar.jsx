@@ -10,12 +10,12 @@ const NavBar = () => {
                 <img src={blogLogo} alt="logo" className='h-[80%]'/>
             </div>
             <div id="right" className='w-[60%] flex justify-evenly items-center'>
-                <li className='list-none font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>ART</li>
-                <li className='list-none font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>SCIENCE</li>
-                <li className='list-none font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>TECHNOLOGY</li>
-                <li className='list-none font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>CINEMA</li>
-                <li className='list-none font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>DESIGN</li>
-                <li className='list-none font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>FOOD</li>
+                <li className='list-none font-sans font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>ART</li>
+                <li className='list-none font-sans font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>SCIENCE</li>
+                <li className='list-none font-sans font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>TECHNOLOGY</li>
+                <li className='list-none font-sans font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>CINEMA</li>
+                <li className='list-none font-sans font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>DESIGN</li>
+                <li className='list-none font-sans font-medium text-slate-800 cursor-pointer hover:text-green-500 transition-colors'>FOOD</li>
                 <button id="profile-btn" className='h-[47%] w-[7.5%] rounded-full bg-slate-100 border-2 border-slate-200'>
                     <img src={defaultPFP} alt="PFP" className='rounded-full'/>
                 </button>

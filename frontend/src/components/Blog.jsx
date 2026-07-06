@@ -9,7 +9,7 @@ const Blog = ({index}) => {
         <div id='blog' className={`h-[60vh] w-full flex items-center justify-center border-b border-slate-200 ${isReverse ? 'flex-row-reverse gap-10' : ''}`}>
             <div id="left" className='w-[55%] h-full flex flex-col justify-center pl-1'>
                 <div id="blog-title" className='w-full h-[40%] flex items-center justify-center'>
-                    <h1 className='font-bold text-5xl text-slate-800'>
+                    <h1 className='font-sans font-bold text-5xl text-slate-800'>
                         The discovery of the Nuetron Star
                     </h1>
                 </div>
@@ -19,7 +19,7 @@ const Blog = ({index}) => {
                     </p>
                 </div>
                 <div id="read-more" className='w-[70%] h-[20%] flex items-start pl-[10%]'>
-                    <button id="read-more-btn" className='w-[40%] h-[50%] border-2 border-green-500 text-green-500 font-bold'>
+                    <button id="read-more-btn" className='w-[40%] h-[50%] border-2 border-green-500 text-green-500 font-bold font-sans'>
                         Read More
                     </button>
                 </div>
