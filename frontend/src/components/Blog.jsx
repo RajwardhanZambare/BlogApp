@@ -2,9 +2,12 @@ import React from 'react'
 import '../index.css'
 import demoBlog from '../assets/demoBlog.png'
 
-const Blog = () => {
+const Blog = ({index}) => {
+
+    const isReverse = index % 2 !== 0
+
     return (
-        <div className='h-[60vh] w-full flex items-center justify-center border-b'>
+        <div id='blog' className={`h-[60vh] w-full flex items-center justify-center border-b ${isReverse ? 'flex-row-reverse gap-10' : ''}`}>
             <div id="left" className='w-[55%] h-full flex flex-col justify-center pl-1'>
                 <div id="blog-title" className='w-full h-[40%] flex items-center justify-center'>
                     <h1 className='font-bold text-5xl'>
