@@ -2,7 +2,7 @@ import React from 'react'
 
 const NavBar = () => {
     return (
-        <div className='bg-purple-500 w-full h-auto flex'>
+        <div id='navbar' className='bg-purple-500 w-[69.5vw] h-[12vh] flex fixed top-0'>
             <div id='left' className='w-[40%] flex items-center'>
                 <h1 className='font-bold text-5xl'>Blog</h1>
             </div>
@@ -13,8 +13,8 @@ const NavBar = () => {
                 <li type='none'>CINEMA</li>
                 <li type='none'>DESIGN</li>
                 <li type='none'>FOOD</li>
-                <button id="profile-btn" className='h-[47%] w-[8%] rounded-[50%] bg-amber-300'>
-                    profile
+                <button id="profile-btn" className='h-[47%] w-[7.5%] rounded-[50%] bg-amber-300'>
+                    
                 </button>
             </div>
         </div>
