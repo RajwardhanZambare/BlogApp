@@ -1,7 +1,7 @@
 import { useState } from "react"
 import React from 'react'
 
-const Login = () => {
+const Login = ({ onClose }) => {
 
     const [form, setForm] = useState({
         identifier: "", // username or email
@@ -19,7 +19,7 @@ const Login = () => {
 
     return (
         <div>
-            <section className="flex h-screen items-center justify-center py-2 bg-transparent">
+            <section className="flex h-screen w-[25vw] items-center justify-center py-2 bg-transparent">
                 <div className="max-h-full w-full max-w-md overflow-y-auto rounded-2xl border border-[#0f1b3d]/10 bg-white p-5 shadow-[0_20px_60px_-30px_rgba(15,27,61,0.35)] lg:p-7">
                     {submitted ? (
                         <div className="py-4 text-center">
@@ -44,7 +44,9 @@ const Login = () => {
                     ) : (
                         <>
                             <div className="flex justify-end w-full">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x cursor-pointer"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                                <button onClick={onClose}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x cursor-pointer"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                                </button>
                             </div>
                             <h2 className="font-serif text-2xl font-bold">Login</h2>
                             <p className="mt-1 text-sm text-[#0f1b3d]/60">

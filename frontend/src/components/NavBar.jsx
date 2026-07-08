@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import blogLogo from '../assets/blogLogo.png'
 import defaultPFP from '../assets/defaultPFP.png'
+import Login from '../pages/Login.jsx'
 
 const NavBar = () => {
 
     const [showDropDown, setShowDropDown] = useState(false)
     const [isLogin, setIsLogin] = useState(false)
+    const [showLogin, setShowLogin] = useState(false)
 
     const navigate = useNavigate()
 
@@ -49,7 +51,8 @@ const NavBar = () => {
                         {!isLogin && (
                             <div className="flex w-full h-[12%]">
                                 <button className='w-full flex active:scale-95' onClick={() => {
-                                    navigate('/login')
+                                    setShowLogin(true)
+                                    setShowDropDown(false)
                                 }}>
                                     <div className='flex items-center justify-center w-[20%]'> {/* icon */}
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-log-in-icon lucide-log-in"><path d="m10 17 5-5-5-5" /><path d="M15 12H3" /><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" /></svg>
@@ -101,6 +104,13 @@ const NavBar = () => {
                     </div>
                 )}
             </div>
+            {showLogin && (
+                <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50' onClick={() => setShowLogin(false)}>
+                    <div onClick={(e) => e.stopPropagation()}>
+                        <Login onClose={() => setShowLogin(false)} />
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
