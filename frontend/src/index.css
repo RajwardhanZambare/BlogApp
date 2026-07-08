@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+::-webkit-scrollbar{
+    display: none;
+}
+
 #read-more-btn {
     display: inline-block;
     vertical-align: middle;
