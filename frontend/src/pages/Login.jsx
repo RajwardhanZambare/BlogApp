@@ -1,9 +1,25 @@
+import { useState } from "react"
 import React from 'react'
 
 const Login = () => {
+
+    const [form, setForm] = useState({
+        identifier: "", // username or email
+        password: "",
+    });
+    const [showPassword, setShowPassword] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [submitted, setSubmitted] = useState(false);
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        // TODO: call your login API here
+        setSubmitted(true);
+    };
+
     return (
         <div>
-            <section className="flex min-h-0 items-center justify-center py-2">
+            <section className="flex h-screen items-center justify-center py-2 bg-transparent">
                 <div className="max-h-full w-full max-w-md overflow-y-auto rounded-2xl border border-[#0f1b3d]/10 bg-white p-5 shadow-[0_20px_60px_-30px_rgba(15,27,61,0.35)] lg:p-7">
                     {submitted ? (
                         <div className="py-4 text-center">
@@ -13,11 +29,10 @@ const Login = () => {
                                 </svg>
                             </div>
                             <h2 className="mt-4 font-serif text-xl font-bold">
-                                Welcome to Prism, {form.name.split(" ")[0]}!
+                                Welcome back!
                             </h2>
                             <p className="mt-2 text-sm text-[#0f1b3d]/70">
-                                Check your inbox at <strong>{form.email}</strong> to verify
-                                your account.
+                                You've successfully logged in as <strong>{form.identifier}</strong>.
                             </p>
                             <a
                                 href="/"
@@ -28,39 +43,26 @@ const Login = () => {
                         </div>
                     ) : (
                         <>
-                            <h2 className="font-serif text-2xl font-bold">Create account</h2>
+                            <div className="flex justify-end w-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x cursor-pointer"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                            </div>
+                            <h2 className="font-serif text-2xl font-bold">Login</h2>
                             <p className="mt-1 text-sm text-[#0f1b3d]/60">
-                                Already have one?{" "}
-                                <a href="/profile" className="font-semibold text-[#16a34a] hover:underline">
-                                    Sign in
+                                Dont have an account?{" "}
+                                <a href="/register" className="font-semibold text-[#16a34a] hover:underline">
+                                    Create Account
                                 </a>
                             </p>
 
-                            <form onSubmit={onSubmit} className="mt-4 space-y-3" noValidate>
+                            <form onSubmit={onSubmit} className="mt-4 space-y-3">
                                 <Field
-                                    label="Full name(optional middle name)"
-                                    id="name"
-                                    value={form.name}
-                                    onChange={(v) => setForm({ ...form, name: v })}
-                                    error={errors.name}
-                                    placeholder="Peter Parker"
-                                />
-                                <Field
-                                    label="Username"
-                                    id="username"
-                                    value={form.username}
-                                    onChange={(v) => setForm({ ...form, username: v })}
-                                    error={errors.username}
-                                    placeholder="peterparker@123"
-                                />
-                                <Field
-                                    label="Email"
-                                    id="email"
-                                    type="email"
-                                    value={form.email}
-                                    onChange={(v) => setForm({ ...form, email: v })}
-                                    error={errors.email}
-                                    placeholder="you@domain.com"
+                                    label="Username or Email"
+                                    id="identifier"
+                                    value={form.identifier}
+                                    onChange={(v) => setForm({ ...form, identifier: v })}
+                                    error={errors.identifier}
+                                    placeholder="peterparker@123 or you@domain.com"
+                                    required
                                 />
                                 <Field
                                     label="Password"
@@ -69,7 +71,8 @@ const Login = () => {
                                     value={form.password}
                                     onChange={(v) => setForm({ ...form, password: v })}
                                     error={errors.password}
-                                    placeholder="At least 8 characters"
+                                    placeholder="Enter your password"
+                                    required
                                     trailing={
                                         <button
                                             type="button"
@@ -80,21 +83,18 @@ const Login = () => {
                                         </button>
                                     }
                                 />
-                                <Field
-                                    label="Confirm password"
-                                    id="confirm"
-                                    type={showPassword ? "text" : "password"}
-                                    value={form.confirm}
-                                    onChange={(v) => setForm({ ...form, confirm: v })}
-                                    error={errors.confirm}
-                                    placeholder="Re-enter password"
-                                />
+
+                                <div className="flex justify-end">
+                                    <span className="text-xs font-semibold text-[#16a34a]">
+                                        Forgot password?
+                                    </span>
+                                </div>
 
                                 <button
                                     type="submit"
                                     className="group relative w-full overflow-hidden rounded-lg border-2 border-[#22c55e] bg-[#22c55e] px-6 py-2.5 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-[#16a34a] hover:shadow-lg hover:shadow-[#22c55e]/30"
                                 >
-                                    Create account
+                                    Login
                                 </button>
 
                                 <div className="relative py-0.5 text-center">
@@ -123,6 +123,40 @@ const Login = () => {
             </section>
         </div >
     )
+}
+
+function Field({
+    label,
+    id,
+    value,
+    onChange,
+    error,
+    placeholder,
+    type = "text",
+    trailing,
+    required = false,
+}) {
+    return (
+        <div>
+            <div className="flex items-baseline justify-between">
+                <label htmlFor={id} className="block text-sm font-semibold text-[#0f1b3d]">
+                    {label}
+                </label>
+                {trailing}
+            </div>
+            <input
+                id={id}
+                type={type}
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                placeholder={placeholder}
+                required={required}
+                className={`mt-1 w-full rounded-lg border bg-[#fcfbf8] px-4 py-2 text-[15px] text-[#0f1b3d] placeholder:text-[#0f1b3d]/35 outline-none transition-all focus:border-[#22c55e] focus:bg-white focus:ring-2 focus:ring-[#22c55e]/20 ${error ? "border-red-400" : "border-[#0f1b3d]/15"
+                    }`}
+            />
+            {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
+        </div>
+    );
 }
 
 export default Login
