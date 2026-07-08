@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-export default function Register() {
+function Register() {
     const [form, setForm] = useState({
         name: "",
+        username: "",
         email: "",
         password: "",
         confirm: "",
@@ -13,20 +14,31 @@ export default function Register() {
 
     const validate = () => {
         const e = {};
-        if (form.name.trim().length < 2) e.name = "Please enter your full name.";
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+        if (form.name.trim().length < 2){
+            e.name = "Please enter your full name.";
+        }
+        if(form.username.trim().length <= 3 || form.username.trim().length > 16){
+            e.username = "Username should be in between 3-16 characters";
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)){
             e.email = "Enter a valid email address.";
-        if (form.password.length < 8)
+        }
+        if (form.password.length < 8){
             e.password = "Password must be at least 8 characters.";
-        if (form.password !== form.confirm)
+        }
+        if (form.password !== form.confirm){
             e.confirm = "Passwords don't match.";
+        }
         setErrors(e);
         return Object.keys(e).length === 0;
     };
 
-    const onSubmit = (ev) => {
-        ev.preventDefault();
-        if (validate()) setSubmitted(true);
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (validate()){
+            setSubmitted(true);
+        }
+        console.log(form.username);
     };
 
     return (
@@ -36,7 +48,7 @@ export default function Register() {
                 {/* Left promo */}
                 <section className="flex flex-col items-center justify-center text-center">
                     <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#22c55e]">
-                        Join Prism
+                        Join Us
                     </span>
                     <h1 className="mt-2 font-serif text-3xl font-bold leading-[1.05] tracking-tight lg:text-5xl">
                         Stories that <br />
@@ -52,8 +64,8 @@ export default function Register() {
                             "Personalized feed based on your interests",
                             "Save articles and build reading lists",
                             "Weekly digest from your favorite categories",
-                        ].map((b) => (
-                            <li key={b} className="flex items-start gap-3">
+                        ].map((key) => (
+                            <li key={key} className="flex items-start gap-3">
                                 <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[#22c55e]/15 text-[#16a34a]">
                                     <svg viewBox="0 0 20 20" fill="currentColor" className="h-3 w-3">
                                         <path
@@ -63,7 +75,7 @@ export default function Register() {
                                         />
                                     </svg>
                                 </span>
-                                <span>{b}</span>
+                                <span>{key}</span>
                             </li>
                         ))}
                     </ul>
@@ -98,19 +110,27 @@ export default function Register() {
                                 <h2 className="font-serif text-2xl font-bold">Create account</h2>
                                 <p className="mt-1 text-sm text-[#0f1b3d]/60">
                                     Already have one?{" "}
-                                    <a href="#" className="font-semibold text-[#16a34a] hover:underline">
+                                    <a href="/profile" className="font-semibold text-[#16a34a] hover:underline">
                                         Sign in
                                     </a>
                                 </p>
 
                                 <form onSubmit={onSubmit} className="mt-4 space-y-3" noValidate>
                                     <Field
-                                        label="Full name"
+                                        label="Full name(optional middle name)"
                                         id="name"
                                         value={form.name}
                                         onChange={(v) => setForm({ ...form, name: v })}
                                         error={errors.name}
-                                        placeholder="Ada Lovelace"
+                                        placeholder="Peter Parker"
+                                    />
+                                    <Field
+                                        label="Username"
+                                        id="username"
+                                        value={form.username}
+                                        onChange={(v) => setForm({ ...form, username: v })}
+                                        error={errors.username}
+                                        placeholder="peterparker@123"
                                     />
                                     <Field
                                         label="Email"
@@ -193,7 +213,7 @@ function Field({
     error,
     placeholder,
     type = "text",
-    trailing,
+    trailing,   
 }) {
     return (
         <div>
@@ -217,3 +237,5 @@ function Field({
         </div>
     );
 }
+
+export default Register
