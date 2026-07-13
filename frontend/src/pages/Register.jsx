@@ -23,7 +23,7 @@ function Register() {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)){
             e.email = "Enter a valid email address.";
         }
-        if (form.password.length < 8){
+        if (form.password.length < 8 || form.password.length > 16){
             e.password = "Password must be at least 8 characters.";
         }
         if (form.password !== form.confirm){
