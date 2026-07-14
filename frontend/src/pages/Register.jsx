@@ -1,6 +1,10 @@
 import { useState } from "react";
+import axios from 'axios'
 
 function Register() {
+
+    const URL = import.meta.env.VITE_URL
+
     const [form, setForm] = useState({
         fullname: "",
         username: "",
@@ -39,7 +43,7 @@ function Register() {
         return Object.keys(e).length === 0;
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         if (validate()){
             setSubmitted(true);
@@ -49,8 +53,16 @@ function Register() {
         inputs.username = form.username
         inputs.email = form.email
         inputs.password = form.password
+
+        try{
+           const res = await axios.post(`${URL}/api/auth/register`, inputs) 
+           console.log(res)
+        }
+        catch(error) {
+            console.log(error)
+        }
     };
-    
+
     return (
         <div className="h-screen overflow-hidden bg-[#fcfbf8] text-[#0f1b3d]">
             {/* Main */}
