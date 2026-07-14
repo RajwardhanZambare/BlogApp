@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Register() {
     const [form, setForm] = useState({
-        name: "",
+        fullname: "",
         username: "",
         email: "",
         password: "",
@@ -11,11 +11,17 @@ function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
+    const [inputs, setInputs] = useState({
+        fullname: "",
+        username: "",
+        email: "",
+        password: ""
+    })
 
     const validate = () => {
         const e = {};
-        if (form.name.trim().length < 2){
-            e.name = "Please enter your full name.";
+        if (form.fullname.trim().length < 2){
+            e.fullname = "Please enter your full name.";
         }
         if(form.username.trim().length <= 3 || form.username.trim().length > 16){
             e.username = "Username should be in between 3-16 characters";
@@ -38,9 +44,13 @@ function Register() {
         if (validate()){
             setSubmitted(true);
         }
-        console.log(form.username);
-    };
 
+        inputs.fullname = form.fullname
+        inputs.username = form.username
+        inputs.email = form.email
+        inputs.password = form.password
+    };
+    
     return (
         <div className="h-screen overflow-hidden bg-[#fcfbf8] text-[#0f1b3d]">
             {/* Main */}
@@ -92,7 +102,7 @@ function Register() {
                                     </svg>
                                 </div>
                                 <h2 className="mt-4 font-serif text-xl font-bold">
-                                    Welcome to Prism, {form.name.split(" ")[0]}!
+                                    Welcome to Prism, {form.fullname.split(" ")[0]}!
                                 </h2>
                                 <p className="mt-2 text-sm text-[#0f1b3d]/70">
                                     Check your inbox at <strong>{form.email}</strong> to verify
@@ -118,10 +128,10 @@ function Register() {
                                 <form onSubmit={onSubmit} className="mt-4 space-y-3" noValidate>
                                     <Field
                                         label="Full name(optional middle name)"
-                                        id="name"
-                                        value={form.name}
-                                        onChange={(v) => setForm({ ...form, name: v })}
-                                        error={errors.name}
+                                        id="fullname"
+                                        value={form.fullname}
+                                        onChange={(v) => setForm({ ...form, fullname: v })}
+                                        error={errors.fullname}
                                         placeholder="Peter Parker"
                                     />
                                     <Field
