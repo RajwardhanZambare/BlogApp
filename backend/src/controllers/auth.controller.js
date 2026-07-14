@@ -9,7 +9,7 @@ export const registerUser = async (req, res) => {
     const existingUserQuery = "SELECT * FROM users WHERE email = ? OR username = ?"
 
     //execute the query
-    db.query(existingUserQuery, [req.body.email, req.body.username], (err, data) => {
+    db.query(existingUserQuery, [req.body.email, req.body.username], async (err, data) => {
         if(err){ //if error occurs then return the error
             return res.json(err)
         }
