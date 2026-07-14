@@ -8,3 +8,5 @@ const db = mysql.createConnection({
     password:"rajmysql2006",
     database:"BlogApp"
 })
+
+export default db
