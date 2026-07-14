@@ -21,7 +21,7 @@ export const registerUser = async (req, res) => {
         }
 
         //hash the password
-        const hashedPassword = bcrypt.hash(req.body.password, 10)
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
         //add the user into the users table
         //define the query
